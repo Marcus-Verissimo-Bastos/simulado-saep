@@ -1,0 +1,13 @@
+1) No pgAdmin, rode:
+   ALTER TABLE usuario ADD COLUMN senha VARCHAR(255);
+   INSERT INTO usuario (nome, email, senha) VALUES ('Admin', 'admin@teste.com', '123456');
+   INSERT INTO produtos (nome, estoque, quantidade) VALUES ('Produto Teste', 10, 10);
+
+2) Abra server.js e troque os dados do Postgres (database, user, password).
+
+3) No terminal, dentro desta pasta:
+   npm install
+   npm start
+
+4) Abra http://localhost:3000
+   Login: admin@teste.com / 123456

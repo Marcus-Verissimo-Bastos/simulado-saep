@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tela principal</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <div class="caixa">
+    <h2>Bem-vindo, <span id="nome"></span>!</h2>
+    <a href="produtos.html"><button>Produtos</button></a>
+    <a href="estoque.html"><button>Gestão de Estoque</button></a>
+    <button class="vermelho" onclick="sair()">Sair</button>
+  </div>
+
+  <script>
+    const usuario = localStorage.getItem('usuario');
+    if (!usuario) location.href = 'index.html';
+    document.getElementById('nome').textContent = usuario;
+
+    function sair() {
+      localStorage.removeItem('usuario');
+      location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <div class="caixa">
+    <h2>Login</h2>
+    <input id="email" placeholder="E-mail">
+    <input id="senha" type="password" placeholder="Senha">
+    <p id="erro" class="erro"></p>
+    <button onclick="entrar()">Entrar</button>
+  </div>
+
+  <script>
+    async function entrar() {
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+      const erro = document.getElementById('erro');
+
+      if (!email || !senha) { erro.textContent = 'Preencha e-mail e senha.'; return; }
+
+      const resp = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+      });
+      const dados = await resp.json();
+
+      if (!resp.ok) { erro.textContent = dados.erro; return; }
+
+      localStorage.setItem('usuario', dados.nome);
+      location.href = 'principal.html';
+    }
+  </script>
+</body>
+</html>
